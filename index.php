@@ -133,7 +133,7 @@ $user_name = 'Андрей'; // укажите здесь ваше имя
                     <div class="lot__state">
                         <div class="lot__rate">
                             <span class="lot__amount">Стартовая цена</span>
-                            <span class="lot__cost"><?=$value['price']; ?><b class="rub">р</b></span>
+                            <span class="lot__cost"><?=format_sum($value['price']) ?></span>
                         </div>
                         <div class="lot__timer timer">
                             12:23
@@ -141,10 +141,18 @@ $user_name = 'Андрей'; // укажите здесь ваше имя
                     </div>
                 </div>
             </li>
-        <?php endforeach;?>
-            
-         
-            
+        <?php endforeach;?> 
+
+        <?php function format_sum ($input) {
+            $cel = ceil($input);
+            if ($cel >= 1000) {
+                $cel = number_format($cel, 0, ',', ' ');
+            } 
+            $cel = $cel . " ₽";
+             return $cel;
+         }
+
+         ?>                                
         </ul>
     </section>
 </main>
