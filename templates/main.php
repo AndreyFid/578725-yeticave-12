@@ -31,42 +31,42 @@
                     'catecories' => 'Доски и лыжи',
                     'price' => '10999',
                     'url' => 'img/lot-1.jpg',
-                    'date_end' => '2020-09-12',
+                    'dat_end' => '2020-09-19',
                 ],
                 [ 
                     'name' => 'DC Ply Mens 2016/2017 Snowboard',
                     'catecories' => 'Доски и лыжи',
                     'price' => '159999',
                     'url' => 'img/lot-2.jpg',
-                    'date_end' => '2020-09-18',
+                    'dat_end' => '2020-09-16',
                 ],
                 [ 
                     'name' => 'Крепления Union Contact Pro 2015 года размер L/XL',
                     'catecories' => 'Крепления',
                     'price' => '8000',
                     'url' => 'img/lot-3.jpg',
-                    'date_end' => '2020-09-09',
+                    'dat_end' => '2020-09-22',
                 ],
                 [ 
                     'name' => 'Ботинки для сноуборда DC Mutiny Charocal',
                     'catecories' => 'Ботинки',
                     'price' => '10999',
                     'url' => 'img/lot-4.jpg',
-                    'date_end' => '2020-09-11',
+                    'dat_end' => '2020-09-20',
                 ],
                 [ 
                     'name' => 'Куртка для сноуборда DC Mutiny Charocal',
                     'catecories' => 'Одежда',
                     'price' => '7500',
                     'url' => 'img/lot-5.jpg',
-                    'date_end' => '2020-09-13',
+                    'dat_end' => '2020-09-17',
                 ],
                 [ 
                     'name' => 'Маска Oakley Canopy',
                     'catecories' => 'Разное',
                     'price' => '5400',
                     'url' => 'img/lot-6.jpg',
-                    'date_end' => '2020-09-18',
+                    'dat_end' => '2020-09-19',
                 ],
 
 
@@ -75,6 +75,7 @@
              ?>
             <!--заполните этот список из массива с товарами-->                
             <?php foreach ($product as $key => $value): ?>
+                <?php $time_to_end = check_lot_endtime($value['dat_end']);?>
             <li class="lots__item lot">
                 <div class="lot__image">
                     <img src="<?=$value["url"]; ?>" width="350" height="260" alt="">
@@ -87,8 +88,8 @@
                             <span class="lot__amount">Стартовая цена</span>
                             <span class="lot__cost"><?=format_sum($value['price']) ?></span>
                         </div>
-                        <div class="lot__timer timer">
-                            12:23
+                        <div class="lot__timer timer <?php if ($time_to_end[0] == 0): ?>timer--finishing<?php endif ?>">
+                        <?=$lot_end_time = $time_to_end[0] . ":" . $time_to_end[1];?>
                         </div>
                     </div>
                 </div>
